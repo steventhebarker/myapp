@@ -1,6 +1,6 @@
 import {Button} from '@material-ui/core';
 import * as React from 'react';
-import Dropzone from 'react-dropzone';
+//import Dropzone from 'react-dropzone';
 import CircularProgress from '@material-ui/core/CircularProgress'
 import './App.css';
 import {themes, ThemeContext} from './theme-context';;
@@ -8,9 +8,10 @@ import {themes, ThemeContext} from './theme-context';;
 interface IState {
   imageFiles: any[],
   results: any,
-  dropzone: any,
+  //dropzone: any,
   theme: any,
-  toggleTheme: any
+  toggleTheme: any,
+  url: string
 }
 
 
@@ -21,8 +22,8 @@ export default class App extends React.Component<{}, IState>{
     this.state = {
       imageFiles: [],
       results: "",
-      dropzone: this.onDrop.bind(this),
-  
+      //dropzone: this.onDrop.bind(this),
+      url: '',
       theme: themes.dark,
       toggleTheme: this.toggleTheme(),
     };
@@ -37,20 +38,20 @@ export default class App extends React.Component<{}, IState>{
     }));
   };
 
-  public onDrop(files: any) {
-    this.setState({
-      imageFiles: files,
-      results: ""
-    })
-    const file = files[0]
-    const reader = new FileReader();
-    reader.onload = (readerEvt) => {
-        const binaryString = readerEvt.target!!.result;
-        this.upload(btoa(binaryString))
-    };
+  // public onDrop(files: any) {
+  //   this.setState({
+  //     imageFiles: files,
+  //     results: ""
+  //   })
+  //   const file = files[0]
+  //   const reader = new FileReader();
+  //   reader.onload = (readerEvt) => {
+  //       const binaryString = readerEvt.target!!.result;
+  //       this.upload(btoa(binaryString))
+  //   };
 
-    reader.readAsBinaryString(file);
-  }
+  //   reader.readAsBinaryString(file);
+  // }
 
   public upload(base64String: string) {
     fetch('https://danktrigger.azurewebsites.net/api/dank', {
@@ -72,8 +73,22 @@ export default class App extends React.Component<{}, IState>{
       return response
     })
   }
+imageurl = '';
 
+myFunction = (params: any) => {
+  params.preventDefault();
+  console.log('cheeh boi');
+  fetch('https://api.thecatapi.com/v1/images/search', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+  .then((response : any) => {
+    response.json().then((data:any) => this.setState({url: data[0].url}));
+  })
 
+};
   public render() {
     return (
       <div className="container-fluid">
@@ -82,7 +97,8 @@ export default class App extends React.Component<{}, IState>{
       <ThemeContext.Consumer>
         {theme => (
         <div className="centreText" style={{backgroundColor: theme.theme.background, color: theme.theme.foreground}}>
-          <div className="dropZone">
+          {
+            /* <div className="dropZone">
             <Dropzone onDrop={this.state.dropzone} style={{position: "relative"}}>
               <div style={{height: '50vh'}}>
                 {
@@ -92,7 +108,16 @@ export default class App extends React.Component<{}, IState>{
                 }  
               </div>
             </Dropzone>
-          </div>
+          </div> */
+          <form>
+          <label>
+          <h2>The Steve Dictionary</h2> 
+          <p>Simply type the word you want the definition for.</p>
+          </label> 
+          <Button onClick={this.myFunction}>Click me</Button><br />          
+          <img src={this.state.url}/>
+          </form>
+          }
           <div  className="dank">
           {
             this.state.results === "" && this.state.imageFiles.length > 0 ?
