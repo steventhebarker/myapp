@@ -56,9 +56,9 @@ public toggleTheme = () => {
 
 
   imageurl = '';
-  showCatPhoto = (params: any) => {
+  public showCatPhoto = (params: any) => {
     params.preventDefault();
-    fetch('https://api.thecatapi.com/v1/images/search', {
+    fetch('https://api.thedogapi.com/v1/images/search', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -84,8 +84,8 @@ public toggleTheme = () => {
                     <Button onClick={this.toggleTheme.bind(this)} style={{backgroundColor: "#cccccc", color: "black", float: "right"}}>Toggle Disco Mode</Button>
                     <br /> <br /> 
           <label>
-          <h2>Welcome to The CatSpace</h2> 
-          <p>Click the Button to generate a new cat picture! </p> 
+          <h2>Welcome to The DogSpace</h2> 
+          <p>Click the Button to generate a new dog picture! </p> 
           </label> 
           <br /> 
           <Button onClick={this.showCatPhoto} style={{backgroundColor: "White", color: "Black"}}>boop me!</Button>
@@ -97,9 +97,6 @@ public toggleTheme = () => {
         </div>
         )}
         </ThemeContext.Consumer>
-        <div>
-
-        </div>
         </ThemeContext.Provider>
       </div>
     );
