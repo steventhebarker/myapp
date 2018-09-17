@@ -16,7 +16,6 @@ interface IState {
 export default class App extends React.Component<{}, IState> {
   constructor(props: any) {
     super(props);
-    console.log("constructor");
     this.state = {
       results: "",
       url: "",

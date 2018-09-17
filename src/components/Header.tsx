@@ -25,7 +25,7 @@ export const Header: React.StatelessComponent<{}> = () => {
                 <IndexLinkContainer to="/DogSpace">
                     <NavItem>
                         <div style={{color:'black'}}> 
-                        Cat Space 
+                        Dog Space 
                         </div>
                     </NavItem>
                 </IndexLinkContainer>

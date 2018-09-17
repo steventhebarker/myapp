@@ -16,7 +16,6 @@ interface IState {
 export default class App extends React.Component<{}, IState> {
   constructor(props: any) {
     super(props);
-    console.log("constructor");
     this.state = {
       results: "",
       url: "",
@@ -90,17 +89,14 @@ export default class App extends React.Component<{}, IState> {
   public showPhoto = (params: any) => {
     if (this.state.variable === 'gif')
     {
-      console.log('giph bruv');
       this.showDogGif();
     }
     else if (this.state.variable === 'static')
     {
-      console.log('jpeg bruv');
       this.showDogStatic();
     }
     else
     {
-      console.log('whatever floats your boat');
       this.showDogPhoto();
     }
   };
