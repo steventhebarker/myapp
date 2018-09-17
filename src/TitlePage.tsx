@@ -67,7 +67,7 @@ export default class TitlePage extends React.Component<{}, IState> {
                     <Button
                       onClick={this.toggleTheme.bind(this)}
                       style={{
-                        backgroundColor: "#cccccc",
+                        backgroundColor: "white",
                         color: "black",
                         float: "right"
                       }}
@@ -76,14 +76,18 @@ export default class TitlePage extends React.Component<{}, IState> {
                     </Button>
                     <br /> <br />
                     <label>
-                      <h2 style={{ fontSize: 80 }}>Welcome to The PetSpace!</h2>
+                      <h2 style={{ fontSize: 80, color: theme.theme.foreground }}>Welcome to The PetSpace!</h2>
                       <br />
-                      <p style={{ fontSize: 20, color: "#666666" }}>
+                      <p className = "centreParagraph" style={{ fontSize: 20,color: theme.theme.foreground }}>
                         This is a website written by Steven Barker for MSA Phase
-                        1. It currently has a cats page and a dogs page which
-                        generates random pictures of the respective animals. You
+                        1. </p>
+                        <p className = "centreParagraph" style={{ fontSize: 20, color: theme.theme.foreground }}>
+                        It currently has a cats page and a dogs page which
+                        generates random pictures of the respective animals.
+                         You
                         can navigate to these pages from the navbar.
                       </p>
+                      <br />
                       <a href="https://thecatapi.com/docs.html">
                         Link to cat API
                       </a>
